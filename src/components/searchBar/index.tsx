@@ -2,20 +2,35 @@ import { useState, KeyboardEvent } from "react";
 import { BsSearch } from "react-icons/bs";
 
 import { Content, SearchContainer } from "./style";
+import { searchUser } from "../../services/searchApi";
+import { UserProps } from "../../types/user";
+import { AxiosError } from "axios";
 
-type SearchProps = {
-  loadUser: (username: string) => Promise<void>;
-};
+const SearchBar = () => {
+  const [user, setUser] = useState<UserProps | null>(null);
+  const [username, setUsername] = useState<string>("");
 
-const SearchBar = ({ loadUser }: SearchProps) => {
-  const [userName, setUserName] = useState("");
+  const loadUser = async (username: string) => {
+    try {
+      const userData = await searchUser(username);
+      setUser(userData);
+    } catch (err) {
+      if (err instanceof AxiosError)
+        if (err.message === "Request failed with status code 404")
+          alert("No user found");
+        else alert("Error");
+      else {
+        alert("Error");
+      }
+    }
+  };
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === "Enter") {
-      loadUser(userName);
+      loadUser(username);
     }
   };
-  
+
   return (
     <Content>
       <h2>Search for a user</h2>
@@ -24,10 +39,10 @@ const SearchBar = ({ loadUser }: SearchProps) => {
         <input
           type="text"
           placeholder="Search for a user"
-          onChange={(e) => setUserName(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <button onClick={() => loadUser(userName)}>
+        <button onClick={() => loadUser(username)}>
           <BsSearch />
         </button>
       </SearchContainer>
