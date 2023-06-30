@@ -8,7 +8,7 @@ const UserPreview = (props: UserProps) => {
   return (
     <Content>
       <img src={props.avatar_url} alt="" />
-      <h2>{props.login}</h2>
+      <h2>{props.name}</h2>
       {props.location && ( //location ins't required
         <Location>
           <MdLocationPin />
