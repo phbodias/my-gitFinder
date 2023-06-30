@@ -4,34 +4,37 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { Content, SearchContainer } from "./style";
-import { searchUser } from "../../services/searchApi";
+import { searchUserService } from "../../services/searchApi";
 import { UserProps } from "../../types/user";
 import { AxiosError } from "axios";
 
-const SearchBar = () => {
-  const [user, setUser] = useState<UserProps | null>(null);
+interface Props {
+  searchedUser: UserProps | null;
+  setSearchedUser: (newState: UserProps) => void;
+}
+
+const SearchBar = (props: Props) => {
   const [username, setUsername] = useState<string>("");
 
-  const notify = () => toast("No user found!");
+  const notify = (message: string) => toast(message);
 
   const loadUser = async (username: string) => {
+    if (username === "") return;
+
     try {
-      const userData = await searchUser(username);
-      setUser(userData);
+      const userData = await searchUserService(username);
+      props.setSearchedUser(userData);
     } catch (err) {
       if (err instanceof AxiosError)
-        if (err.message === "Request failed with status code 404") notify();
-        else alert("Error");
-      else {
-        alert("Error");
-      }
+        if (err.message === "Request failed with status code 404")
+          notify("No user found");
+        else notify(err.message);
+      else notify("Error");
     }
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === "Enter") {
-      loadUser(username);
-    }
+    if (e.key === "Enter") loadUser(username);
   };
 
   return (
