@@ -10,7 +10,7 @@ import { AxiosError } from "axios";
 
 interface Props {
   searchedUser: UserProps | null;
-  setSearchedUser: (newState: UserProps) => void;
+  setSearchedUser: (newState: UserProps | null) => void;
 }
 
 const SearchBar = (props: Props) => {
@@ -26,9 +26,10 @@ const SearchBar = (props: Props) => {
       props.setSearchedUser(userData);
     } catch (err) {
       if (err instanceof AxiosError)
-        if (err.message === "Request failed with status code 404")
+        if (err.message === "Request failed with status code 404") {
           notify("No user found");
-        else notify(err.message);
+          props.setSearchedUser(null);
+        } else notify(err.message);
       else notify("Error");
     }
   };
@@ -56,7 +57,7 @@ const SearchBar = (props: Props) => {
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
-        newestOnTop={false}
+        newestOnTop={true}
         closeOnClick
         rtl={false}
         draggable

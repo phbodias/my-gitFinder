@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { UserProps } from "../../types/user";
 
-import SearchBar from "../../components/searchBar";
+import SearchBar from "../../components/SearchBar";
+import UserPreview from "../../components/UserPreview";
 
 const Search = () => {
   const [searchedUser, setSearchedUser] = useState<UserProps | null>(null);
@@ -12,6 +13,7 @@ const Search = () => {
         searchedUser={searchedUser}
         setSearchedUser={setSearchedUser}
       />
+      {searchedUser && <UserPreview {...searchedUser} />}
     </div>
   );
 };
