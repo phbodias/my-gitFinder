@@ -1,12 +1,14 @@
-import { Outlet } from "react-router-dom";
-import Content from "./style";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Search from "../pages/Search";
+
 
 function App() {
   return (
-    <Content>
-      <h1>GitFinder</h1>
-      <Outlet />
-    </Content>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Search />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
