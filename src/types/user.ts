@@ -1,4 +1,5 @@
 export interface UserProps {
+  url: string;
   avatar_url: string;
   name: string;
   login: string;
