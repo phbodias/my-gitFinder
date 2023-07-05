@@ -1,4 +1,4 @@
-export interface reposProps {
+export interface ReposProps {
   name: string;
   language: string;
   description: string;

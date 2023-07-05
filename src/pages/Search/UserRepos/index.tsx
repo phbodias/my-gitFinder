@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
-import userReposService from "../../../services/userReposApi";
-import { AxiosError } from "axios";
 import { useEffect } from "react";
+import { AxiosError } from "axios";
+
+import userReposService from "../../../services/userReposApi";
 
 const UserRepos = () => {
   const { username } = useParams<string>();
@@ -10,6 +11,7 @@ const UserRepos = () => {
     const loadUserRepos = async (username: string) => {
       try {
         const repos = await userReposService(username);
+        console.log(repos);
       } catch (err) {
         if (err instanceof AxiosError)
           if (err.message === "Request failed with status code 404") {
