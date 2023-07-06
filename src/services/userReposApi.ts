@@ -10,7 +10,7 @@ const userReposService = async (username: string) => {
       description,
       stargazers_count,
       forks_count,
-      url,
+      clone_url,
       watchers_count,
       updated_at,
     } = repo;
@@ -21,7 +21,7 @@ const userReposService = async (username: string) => {
       description,
       stargazers_count,
       forks_count,
-      url,
+      clone_url,
       watchers_count,
       updated_at,
     };
@@ -39,4 +39,3 @@ const userReposService = async (username: string) => {
 };
 
 export default userReposService;
-

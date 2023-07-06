@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Search from "../pages/Search";
-import UserRepos from "../pages/Search/UserRepos";
+import UserRepos from "../pages/UserRepos";
 
 function App() {
   return (
