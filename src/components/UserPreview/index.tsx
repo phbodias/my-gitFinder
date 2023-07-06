@@ -2,12 +2,13 @@ import { MdLocationPin } from "react-icons/md";
 
 import { UserProps } from "../../types/user";
 import { Content, Location, Stats } from "./style";
+import { Link } from "react-router-dom";
 
 const UserPreview = (props: UserProps) => {
   return (
     <Content>
       <img src={props.avatar_url} alt="" />
-      <h2>{props.name}</h2>
+      {props.name && <h2>{props.name}</h2>} {/* name isn't required */}
       {props.location && ( //location isn't required
         <Location>
           <MdLocationPin />
@@ -24,9 +25,7 @@ const UserPreview = (props: UserProps) => {
           <p>{props.following}</p>
         </div>
       </Stats>
-      <a href={props.url} target="_blank">
-        See the projects
-      </a>
+      <Link to={`/users/${props.login}`} >See the best projects</Link>
     </Content>
   );
 };
