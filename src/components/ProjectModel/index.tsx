@@ -25,7 +25,7 @@ const ProjectModel = (props: ReposProps) => {
       </Stats>
       <Link>
         <a href={props.clone_url} target="_blank">
-          <p>See code</p>
+          <p>See the code</p>
           <RiGitRepositoryCommitsLine />
         </a>
       </Link>

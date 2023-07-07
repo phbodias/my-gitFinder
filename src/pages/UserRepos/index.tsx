@@ -5,7 +5,7 @@ import { AxiosError } from "axios";
 import userReposService from "../../services/userReposApi";
 import { ReposProps } from "../../types/repos";
 import ProjectModel from "../../components/ProjectModel";
-import { Content } from "./style";
+import { Content, Title } from "./style";
 
 const UserRepos = () => {
   const { username } = useParams<string>();
@@ -27,17 +27,16 @@ const UserRepos = () => {
     if (username) loadUserRepos(username);
   }, [username]);
   return (
-    <>
+    <Content>
+      <Title>The best repositories of: {username}</Title>
       {repos ? (
-        <Content>
-          {repos.map((repo: ReposProps, index: number) => {
-            return <ProjectModel {...repo} key={index} />;
-          })}
-        </Content>
+        repos.map((repo: ReposProps, index: number) => {
+          return <ProjectModel {...repo} key={index} />;
+        })
       ) : (
         ""
       )}
-    </>
+    </Content>
   );
 };
 

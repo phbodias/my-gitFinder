@@ -11,8 +11,6 @@ const userReposService = async (username: string) => {
       stargazers_count,
       forks_count,
       clone_url,
-      watchers_count,
-      updated_at,
     } = repo;
 
     const r: ReposProps = {
@@ -22,8 +20,6 @@ const userReposService = async (username: string) => {
       stargazers_count,
       forks_count,
       clone_url,
-      watchers_count,
-      updated_at,
     };
 
     return r;

@@ -6,4 +6,11 @@ const Content = styled.div`
   border-radius: 10px;
 `;
 
-export { Content };
+const Title = styled.div`
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+`;
+
+export { Content, Title };
