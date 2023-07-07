@@ -2,8 +2,9 @@ import { HiOutlineCode } from "react-icons/hi";
 import { AiOutlineStar, AiOutlineFork } from "react-icons/ai";
 import { RiGitRepositoryCommitsLine } from "react-icons/ri";
 
-import { ReposProps } from "../../types/repos";
 import { Content, Language, Link, Stats, Title } from "./style";
+
+import { ReposProps } from "../../types/repos";
 
 const ProjectModel = (props: ReposProps) => {
   return (

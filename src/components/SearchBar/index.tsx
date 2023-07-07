@@ -1,12 +1,13 @@
 import { useState, KeyboardEvent } from "react";
+import { AxiosError } from "axios";
 import { BsSearch } from "react-icons/bs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { Content, SearchContainer } from "./style";
 import { searchUserService } from "../../services/searchApi";
 import { UserProps } from "../../types/user";
-import { AxiosError } from "axios";
+
+import { Content, SearchContainer } from "./style";
 
 interface Props {
   searchedUser: UserProps | null;
@@ -35,7 +36,7 @@ const SearchBar = (props: Props) => {
           notify("No user found");
           props.setSearchedUser(null);
         } else notify(err.message);
-      else notify("Error");
+      else notify("Unexpected error");
     }
   };
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { UserProps } from "../../types/user";
 
+import { UserProps } from "../../types/user";
 import SearchBar from "../../components/SearchBar";
 import UserPreview from "../../components/UserPreview";
 import Loading from "../../components/Loading";

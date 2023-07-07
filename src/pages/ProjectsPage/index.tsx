@@ -4,9 +4,11 @@ import { AxiosError } from "axios";
 
 import userReposService from "../../services/userReposApi";
 import { ReposProps } from "../../types/repos";
+
 import ProjectModel from "../../components/ProjectModel";
-import { Content, Title } from "./style";
 import Loading from "../../components/Loading";
+
+import { Content, Title } from "./style";
 
 const UserRepos = () => {
   const { username } = useParams<string>();
@@ -38,14 +40,12 @@ const UserRepos = () => {
     <Content>
       {loading && <Loading />}
       {!loading && notFound && <Title>{errorMessage}</Title>}
-      {repos.length > 0 ? (
-        <Title>The best repositories of: {username}</Title> &&
-        repos.map((repo: ReposProps, index: number) => {
-          return <ProjectModel {...repo} key={index} />;
-        })
-      ) : (
-        <Title>No repository to view</Title>
-      )}
+      {repos.length > 0
+        ? <Title>The best repositories of: {username}</Title> &&
+          repos.map((repo: ReposProps, index: number) => {
+            return <ProjectModel {...repo} key={index} />;
+          })
+        : !loading && <Title>No repository to view</Title>}
     </Content>
   );
 };

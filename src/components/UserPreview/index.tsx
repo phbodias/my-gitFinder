@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import { MdLocationPin } from "react-icons/md";
 
 import { UserProps } from "../../types/user";
+
 import { Content, Location, Stats } from "./style";
-import { Link } from "react-router-dom";
 
 const UserPreview = (props: UserProps) => {
   return (
@@ -25,7 +26,7 @@ const UserPreview = (props: UserProps) => {
           <p>{props.following}</p>
         </div>
       </Stats>
-      <Link to={`/users/${props.login}`} >See the best projects</Link>
+      <Link to={`/users/${props.login}`}>See the best projects</Link>
     </Content>
   );
 };
