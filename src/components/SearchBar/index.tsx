@@ -11,6 +11,8 @@ import { AxiosError } from "axios";
 interface Props {
   searchedUser: UserProps | null;
   setSearchedUser: (newState: UserProps | null) => void;
+  loading: boolean;
+  setLoading: (newState: boolean) => void;
 }
 
 const SearchBar = (props: Props) => {
@@ -20,11 +22,14 @@ const SearchBar = (props: Props) => {
 
   const loadUser = async (username: string) => {
     if (username === "") return;
+    props.setLoading(true);
 
     try {
       const userData = await searchUserService(username);
       props.setSearchedUser(userData);
+      props.setLoading(false);
     } catch (err) {
+      props.setLoading(false);
       if (err instanceof AxiosError)
         if (err.message === "Request failed with status code 404") {
           notify("No user found");
